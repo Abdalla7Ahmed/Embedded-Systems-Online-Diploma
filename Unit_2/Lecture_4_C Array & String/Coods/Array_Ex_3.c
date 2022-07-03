@@ -1,41 +1,43 @@
+
+
 /* ############# << Ex_3 transpose of matrix  >> #######################*/
 #include <stdio.h>
 int main()
 {
-    int rows,column,i,j;
+    int r,c,i,j;
+    int matrix[10][10];
+    int Trans_Matrix[10][10];
     printf("Enter Rows and column : ");
-    scanf("%d %d",&rows,&column);
-    int matrix[rows][column];
-    int Trans_Matrix[column][rows];
+    scanf("%d %d",&r,&c);
     printf("Enter elements of matrix \n");
-    for (i=0;i<rows;i++)
+    for (i=0;i<r;i++)
     {
-        for(j=0;j<column;j++)
+        for(j=0;j<c;j++)
         {
             printf("Enter elements matrix %d %d : ",i+1,j+1);
             scanf("%d",&matrix[i][j]);
         }
     }
     printf("Entered matrix is : \n");
-    for (i=0;i<rows;i++)
+    for (i=0;i<r;i++)
     {
-        for(j=0;j<column;j++)
+        for(j=0;j<c;j++)
         {
             printf("%d \t",matrix[i][j]);
         }
         printf("\n");
     }
-    for (i=0;i<column;i++)
+    for (i=0;i<c;i++)
     {
-        for(j=0;j<rows;j++)
+        for(j=0;j<r;j++)
         {
             Trans_Matrix[i][j]=matrix[j][i];
         }
     }
     printf("Transpose of matrix is : \n");
-    for (i=0;i<column;i++)
+    for (i=0;i<c;i++)
     {
-        for(j=0;j<rows;j++)
+        for(j=0;j<r;j++)
         {
             printf("%d \t",Trans_Matrix[i][j]);
         }
@@ -43,9 +45,9 @@ int main()
     }
     return 0;
 }
-/*
-/* ############# << the same idea  >> #######################*/
 
+/* ############# << the same idea  >> #######################*/
+/*
 #include <stdio.h>
 int main()
 {
@@ -90,6 +92,4 @@ int main()
 
     return 0;
 }
-
-
 */
