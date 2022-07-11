@@ -25,7 +25,7 @@ int main()
         printf("#############################\n");
         printf("Enter 'Y' to continue or 'N' to out : ");
         fflush(stdout); fflush(stdin);
-        scanf("%s",&c);
+        scanf("%c",&c);
         if (c=='N'||c=='n')break;
     }
     printf("Displaying information of students : \n");
