@@ -13,7 +13,7 @@ typedef signed int                    int32_t;
 
 typedef float                         float32_t;
 typedef double                        float64_t;
-typedef long double                   float48_t;
+typedef long double                   float96_t;
 
 /************* volatile *************/
 
@@ -28,9 +28,7 @@ typedef volatile signed int           vint32_t;
 
 typedef volatile float                vfloat32_t;
 typedef volatile double               vfloat64_t;
-typedef volatile long double          vfloat48_t;
+typedef volatile long double          vfloat96_t;
 
 
 #endif
-
-

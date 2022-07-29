@@ -1,7 +1,7 @@
 
-#include <stdio.h>
-#include "Platform_types.h"
-#include "Stm32f103CX.h"
+#include<stdio.h>
+#include"Platform_types.h"
+#include"Stm32f103CX.h"
 
 int main()
 {

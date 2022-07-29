@@ -18,5 +18,3 @@ typedef union {
 }R_ODR_t;
 volatile R_ODR_t *P_ODR =(volatile R_ODR_t *) (GPIO_BASE+0x0c);
 
-
-
