@@ -22,8 +22,9 @@ void main()
 		DPRINTF("\n 3: View all students");
 		DPRINTF("\n 4: Delete all students");
 		DPRINTF("\n 5: Index of student ");
-		DPRINTF("\n 6: Number of students you records ");
+		DPRINTF("\n 6: Length_of_list ");
 		DPRINTF("\n 7: the middle of your records");
+		DPRINTF("\n 8: Reverse the list ");
 		DPRINTF("\n\t Enter option number\n");
 		gets(text_temp);
 		DPRINTF("===============================\n");
@@ -45,10 +46,13 @@ void main()
 			Index_of_student();
 			break;
 		case 6:
-			Number_of_students();
+			Length_of_list();
 			break;
 		case 7:
 			Middle_students();
+			break;
+		case 8:
+			Reverse_List();
 			break;
 		default :
 			DPRINTF("Wrong option");

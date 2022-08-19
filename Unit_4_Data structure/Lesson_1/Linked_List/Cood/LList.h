@@ -42,9 +42,9 @@ int Delete_student();
 void View_all_students();
 void Delete_all_student();
 int Index_of_student();
-int Number_of_students();
+int Length_of_list();
 int Middle_students();
-
+void Reverse_List();
 
 #endif
 

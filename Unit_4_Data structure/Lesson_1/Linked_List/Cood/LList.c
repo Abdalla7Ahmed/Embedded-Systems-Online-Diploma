@@ -97,11 +97,11 @@ void View_all_students()
 	{
 		while (PCurrentStudent)
 		{
-			DPRINTF("record Number %d \n",counter+1);
-			DPRINTF(" student ID : %d \n",PCurrentStudent->Student.ID);
-			DPRINTF(" student name : %s \n",PCurrentStudent->Student.name);
-			DPRINTF(" student heigth : %.2f \n",PCurrentStudent->Student.heigth);
-			DPRINTF("########################################################\n");
+			DPRINTF("####### record Number %d #######\n",counter+1);
+			DPRINTF("# student ID : %d               \n",PCurrentStudent->Student.ID);
+			DPRINTF("# student name : %s             \n",PCurrentStudent->Student.name);
+			DPRINTF("# student heigth : %.2f         \n",PCurrentStudent->Student.heigth);
+			DPRINTF("################################\n");
 			PCurrentStudent=PCurrentStudent->PNextStudent;
 			counter++;
 		}
@@ -161,7 +161,25 @@ int Index_of_student()
 	}
 
 }
-int Number_of_students()
+//int Length_of_list()
+//{
+//	uint32_t counter=0;
+//	struct SStudent *PCurrentStudent=gPFirstStudent;
+//	if (!gPFirstStudent)
+//	{
+//		return 0;
+//	}
+//	else
+//	{
+//		PCurrentStudent=PCurrentStudent->PNextStudent;
+//		return 1+Length_of_list();
+//
+//	}
+//	DPRINTF("You record until now %d student(s)\n",counter);
+//	return 1;
+//}
+
+int Length_of_list()
 {
 	uint32_t counter=0;
 	if (gPFirstStudent)
@@ -225,4 +243,27 @@ int Middle_students()
 		return 0;
 	}
 
+}
+void Reverse_List()
+{
+	struct SStudent *PCurrentStudent=gPFirstStudent;
+	struct SStudent *P_Next = NULL;
+	struct SStudent *P_Previous = NULL;
+	if(gPFirstStudent)
+	{
+		while(PCurrentStudent)
+		{
+			P_Next=(PCurrentStudent->PNextStudent);
+			PCurrentStudent->PNextStudent = P_Previous;
+			P_Previous=PCurrentStudent;
+			PCurrentStudent=P_Next;
+		}
+		gPFirstStudent=P_Previous;
+		DPRINTF("=====Reverse list done sucsessfully pres (3) to view the new order =====\n");
+
+	}
+	else
+	{
+		DPRINTF("=====Your list is empty=====\n");
+	}
 }
