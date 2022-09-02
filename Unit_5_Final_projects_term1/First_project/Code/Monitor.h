@@ -16,7 +16,7 @@ enum
 	Alarm_Waiting
 }M_state_id;
 
-/************** Declare state function collision avoidance ****************/
+/************** Declare state function  ****************/
 STATE_define(Alarm_Waiting);
 STATE_define(Alarm_off);
 STATE_define(Alarm_on);

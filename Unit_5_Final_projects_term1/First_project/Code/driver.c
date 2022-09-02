@@ -16,6 +16,10 @@ void Set_Alarm_actuator(int i)
 		RESET_BIT(GPIOA_ODR,13);
 	}
 }
+
+int getPressureVal(){
+	return (GPIOA_IDR & 0xFF);
+}
 void GPIO_INITIALIZATION (){
 	SET_BIT(APB2ENR, 2);
 	GPIOA_CRL &= 0xFF0FFFFF;

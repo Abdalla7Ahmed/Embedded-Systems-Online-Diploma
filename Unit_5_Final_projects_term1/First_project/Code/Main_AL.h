@@ -16,7 +16,7 @@ enum
 	M_Checking
 }Main_AL_state_id;
 
-/************** Declare state function collision avoidance ****************/
+/************** Declare state function ****************/
 STATE_define(M_Checking);
 STATE_define(M_Waiting);
 STATE_define(M_Sending);

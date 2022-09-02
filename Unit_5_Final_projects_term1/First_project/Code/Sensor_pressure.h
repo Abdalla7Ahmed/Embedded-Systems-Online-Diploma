@@ -13,7 +13,7 @@ enum
 	PS_Waiting,
 	PS_Reading
 }PS_stete_id;
-/************** Declare state function collision avoidance ****************/
+/************** Declare state function ****************/
 STATE_define(PS_Waiting);
 STATE_define(PS_Reading);
 STATE_define(Pressure_Sensor_Init);

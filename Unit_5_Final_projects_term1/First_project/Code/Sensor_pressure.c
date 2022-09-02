@@ -48,9 +48,6 @@ STATE_define(PS_Waiting)
 }
 
 
-int getPressureVal(){
-	return (GPIOA_IDR & 0xFF);
-}
 
 
 
