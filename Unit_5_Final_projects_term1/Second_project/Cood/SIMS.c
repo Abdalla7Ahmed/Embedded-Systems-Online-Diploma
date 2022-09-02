@@ -241,7 +241,7 @@ void Add_student_from_file()
 	else
 	{
 		DPRINTF("=========================================================\n");
-		DPRINTF("[ATTENTION] --> The number of error is %d \n",Error_Count++);
+		DPRINTF("[ATTENTION] --> The number of error is %d \n",Error_Count);
 		DPRINTF("=========================================================\n");
 	}
 }
