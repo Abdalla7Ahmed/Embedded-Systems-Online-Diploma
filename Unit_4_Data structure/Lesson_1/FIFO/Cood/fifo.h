@@ -39,4 +39,3 @@ FIFO_STATUS_t fifo_null(FIFO_BUFF_t *fifo_buff );
 void fifo_print(FIFO_BUFF_t *fifo_buff );
 
 #endif
-

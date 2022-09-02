@@ -112,7 +112,7 @@ FIFO_STATUS_t fifo_null(FIFO_BUFF_t *fifo_buff )
 
 void fifo_print(FIFO_BUFF_t *fifo_buff )
 {
-	Element_type *temp,*counter;
+	Element_type *temp;
 	uint8_t i;
 	printf("\n=========== Now FIFO includes =========== \n");
 	if (fifo_buff->count == 0)
@@ -126,7 +126,6 @@ void fifo_print(FIFO_BUFF_t *fifo_buff )
 		{
 			printf(" element number %d is %d \n",i+1,*temp);
 			temp++;
-			counter++;
 		}
 	}
 	printf("========= print elements is finished ========= \n\n\n");

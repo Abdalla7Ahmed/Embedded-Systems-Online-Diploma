@@ -16,7 +16,6 @@
 						fflush(stdout);\
 						fflush(stdin);}
 
-
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 typedef float float32_t;

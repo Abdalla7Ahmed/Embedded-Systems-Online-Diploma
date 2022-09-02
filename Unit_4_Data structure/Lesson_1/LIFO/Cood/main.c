@@ -8,7 +8,8 @@
 #include "stdlib.h"
 #include "lifo.h"
 #include "stdint.h"
-uint32_t buffer1[5];
+#define length 5
+uint32_t buffer1[length];
 
 int main()
 {
@@ -16,14 +17,14 @@ int main()
 
 	/************ static allocation ************/
 	LIFO_BUFF_t UART_LIFO,I2C_LIFO;
-	if (LIFO_init(&UART_LIFO,buffer1,5)==LIFO_no_error)
+	if (LIFO_init(&UART_LIFO,buffer1,length)==LIFO_no_error)
 	{
-		printf("====LIFO initialization done successfully ======\n");
+		printf("\n=====LIFO initialization done successfully ======\n");
 	}
 
 	/************ dynamic allocation ************/
 	uint32_t *buffer2=(uint32_t*)malloc(5*sizeof(uint32_t));
-	LIFO_init(&I2C_LIFO,buffer2,5);
+	LIFO_init(&I2C_LIFO,buffer2,length);
 
 
 	/************ PUSH items ************/
@@ -41,7 +42,7 @@ int main()
 		}
 		else if (LIFO_PUSH_item(&UART_LIFO,i)== LIFO_NULL)
 		{
-			printf("Wrong option\n");
+			printf("There is no UART_LIFO\n");
 		}
 	}
 	/************ POP items ************/
@@ -54,11 +55,11 @@ int main()
 		}
 		else if (LIFO_POP_item(&UART_LIFO,&temp)== LIFO_empty)
 		{
-			printf("There is no data to view \n");
+			printf("There is no item stored \n");
 		}
 		else if (LIFO_POP_item(&UART_LIFO,&temp)== LIFO_NULL)
 		{
-			printf("Wrong option\n");
+			printf("There is no UART_LIFO\n");
 		}
 
 	}

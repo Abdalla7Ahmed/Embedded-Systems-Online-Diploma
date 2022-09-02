@@ -11,7 +11,7 @@
 LIFO_Status_t LIFO_init(LIFO_BUFF_t *lifo_buff,uint32_t *buffer,uint32_t length)
 {
 	/******************** check if buffer is exist or not  ********************/
-	if(buffer == NULL )
+	if (Check_for_null(lifo_buff)==LIFO_NULL)
 	{
 		return LIFO_NULL;
 	}

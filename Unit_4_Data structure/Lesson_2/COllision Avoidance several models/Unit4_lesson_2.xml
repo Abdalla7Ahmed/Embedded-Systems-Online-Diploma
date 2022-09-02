@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<TURTLEGMODELING version="1.0beta" ANIMATE_INTERACTIVE_SIMULATION="true" ACTIVATE_PENALTIES="true" UPDATE_INFORMATION_DIPLO_SIM="true" ANIMATE_WITH_INFO_DIPLO_SIM="true" OPEN_DIAG_DIPLO_SIM="false" LAST_SELECTED_MAIN_TAB="0" LAST_SELECTED_SUB_TAB="3">
+<TURTLEGMODELING version="1.0beta" ANIMATE_INTERACTIVE_SIMULATION="true" ACTIVATE_PENALTIES="true" UPDATE_INFORMATION_DIPLO_SIM="true" ANIMATE_WITH_INFO_DIPLO_SIM="true" OPEN_DIAG_DIPLO_SIM="false" LAST_SELECTED_MAIN_TAB="0" LAST_SELECTED_SUB_TAB="1">
 
 <Modeling type="AVATAR Design" nameTab="Design" tabs="Block Diagram$CA$Collision_Avoidance$DC_motor$US_sensor" >
 <AVATARBlockDiagramPanel name="Block Diagram" minX="10" maxX="2500" minY="10" maxY="1500" zoom="1.0000000000000004" >
@@ -17,7 +17,7 @@
 <infoparam name="connector" value="" />
 <TGConnectingPoint num="0" id="1" />
 <P1  x="694" y="293" id="9" />
-<P2  x="859" y="292" id="33" />
+<P2  x="859" y="292" id="58" />
 <AutomaticDrawing  data="true" />
 <extraparam>
 <isd value="in DC_motor_set(int speed)" />
@@ -30,7 +30,7 @@
 <sizeparam width="0" height="0" minWidth="0" minHeight="0" maxWidth="2000" maxHeight="2000" minDesiredWidth="0" minDesiredHeight="0" />
 <infoparam name="connector" value="" />
 <TGConnectingPoint num="0" id="3" />
-<P1  x="295" y="357" id="68" />
+<P1  x="295" y="357" id="43" />
 <P2  x="412" y="356" id="17" />
 <AutomaticDrawing  data="true" />
 <extraparam>
@@ -117,11 +117,11 @@
 </COMPONENT>
 <SUBCOMPONENT type="5000" id="54" >
 <father id="104" num="0" />
-<cdparam x="859" y="192" />
-<sizeparam width="250" height="200" minWidth="1" minHeight="1" maxWidth="2000" maxHeight="2000" minDesiredWidth="0" minDesiredHeight="0" />
+<cdparam x="45" y="203" />
+<sizeparam width="250" height="206" minWidth="1" minHeight="1" maxWidth="2000" maxHeight="2000" minDesiredWidth="0" minDesiredHeight="0" />
 <hidden value="false" />
-<cdrectangleparam minX="0" maxX="872" minY="0" maxY="236" />
-<infoparam name="Block1" value="DC_motor" />
+<cdrectangleparam minX="0" maxX="872" minY="0" maxY="230" />
+<infoparam name="Block0" value="US_sensor" />
 <TGConnectingPoint num="0" id="30" />
 <TGConnectingPoint num="1" id="31" />
 <TGConnectingPoint num="2" id="32" />
@@ -149,17 +149,17 @@
 <extraparam>
 <blockType data="block" color="-4072719" />
 <CryptoBlock value="false" />
-<Attribute access="0" id="speed" value="0" type="8" typeOther="" />
-<Signal value="in DC_motor_set(int speed)" attached="true" />
+<Attribute access="0" id="distance" value="0" type="8" typeOther="" />
+<Signal value="out US_set_speed(int distance)" attached="true" />
 </extraparam>
 </SUBCOMPONENT>
 <SUBCOMPONENT type="5000" id="79" >
 <father id="104" num="1" />
-<cdparam x="45" y="203" />
-<sizeparam width="250" height="206" minWidth="1" minHeight="1" maxWidth="2000" maxHeight="2000" minDesiredWidth="0" minDesiredHeight="0" />
+<cdparam x="859" y="192" />
+<sizeparam width="250" height="200" minWidth="1" minHeight="1" maxWidth="2000" maxHeight="2000" minDesiredWidth="0" minDesiredHeight="0" />
 <hidden value="false" />
-<cdrectangleparam minX="0" maxX="872" minY="0" maxY="230" />
-<infoparam name="Block0" value="US_sensor" />
+<cdrectangleparam minX="0" maxX="872" minY="0" maxY="236" />
+<infoparam name="Block1" value="DC_motor" />
 <TGConnectingPoint num="0" id="55" />
 <TGConnectingPoint num="1" id="56" />
 <TGConnectingPoint num="2" id="57" />
@@ -187,8 +187,8 @@
 <extraparam>
 <blockType data="block" color="-4072719" />
 <CryptoBlock value="false" />
-<Attribute access="0" id="distance" value="0" type="8" typeOther="" />
-<Signal value="out US_set_speed(int distance)" attached="true" />
+<Attribute access="0" id="speed" value="0" type="8" typeOther="" />
+<Signal value="in DC_motor_set(int speed)" attached="true" />
 </extraparam>
 </SUBCOMPONENT>
 

@@ -40,6 +40,7 @@ void Add_student()
 	gets(temp_text);
 	PNewStudent->Student.heigth=atof(temp_text);
 	DPRINTF("Add student done successfully  \n");
+
 	/*********** set the next pointer ***********/
 	PNewStudent->PNextStudent=NULL;
 }
@@ -105,8 +106,8 @@ void View_all_students()
 			PCurrentStudent=PCurrentStudent->PNextStudent;
 			counter++;
 		}
+		DPRINTF("========== printing students done successfully  ========== \n");
 	}
-	DPRINTF("========== printing students done successfully  ========== \n");
 }
 void Delete_all_student()
 {
@@ -161,6 +162,7 @@ int Index_of_student()
 	}
 
 }
+/******************* Recursion ********************/
 //int Length_of_list()
 //{
 //	uint32_t counter=0;
@@ -253,7 +255,7 @@ void Reverse_List()
 	{
 		while(PCurrentStudent)
 		{
-			P_Next=(PCurrentStudent->PNextStudent);
+			P_Next=PCurrentStudent->PNextStudent;
 			PCurrentStudent->PNextStudent = P_Previous;
 			P_Previous=PCurrentStudent;
 			PCurrentStudent=P_Next;
