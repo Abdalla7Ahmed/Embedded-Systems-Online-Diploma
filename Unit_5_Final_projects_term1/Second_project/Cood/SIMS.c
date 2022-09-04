@@ -7,7 +7,6 @@
 #include "SIMS.h"
 
 /********************** Variables **********************/
-static uint32_t Count_Student=0;
 uint8_t Full_Name[20];
 uint32_t Selected_roll_number;
 uint32_t temp;
@@ -164,7 +163,6 @@ void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
 					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
-					// error 404 !!!!
 					fifo_buff->head->CID_m[0]=404;
 					Error_Count++;
 				}
@@ -178,7 +176,6 @@ void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
 					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
-					// error 404 !!!!
 					fifo_buff->head->CID_m[1]=404;
 					Error_Count++;
 				}
@@ -192,7 +189,6 @@ void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
 					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
-					// error 404 !!!!
 					fifo_buff->head->CID_m[2]=404;
 					Error_Count++;
 				}
@@ -206,7 +202,6 @@ void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
 					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
-					// error 404 !!!!
 					fifo_buff->head->CID_m[3]=404;
 					Error_Count++;
 				}
@@ -220,7 +215,6 @@ void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
 					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
-					// error 404 !!!!
 					fifo_buff->head->CID_m[4]=404;
 					Error_Count++;
 				}
@@ -238,7 +232,6 @@ void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 			DPRINTF("[INFO]---> The details of %s %s added successfully \n",
 					fifo_buff->head->FirstName_m,fifo_buff->head->LastName_m);
 			fifo_buff->head++;
-			Count_Student++;
 		}
 		else if (PUSH_item(&Data_base)==FIFO_full)
 		{
@@ -309,7 +302,6 @@ void Add_student_manually(FIFO_BUFF_t *fifo_buff)
 		}
 		if (PUSH_item(&Data_base)==FIFO_no_error)
 		{
-			Count_Student++;
 			DPRINTF("==================================================================\n");
 			DPRINTF("[INFO] --> Add student done successfully\n");
 			Find_total(&Data_base);
@@ -461,7 +453,7 @@ void Delete_by_roll(FIFO_BUFF_t *fifo_buff)
 			DPRINTF("Student GPA        --> %.2f",DTemp->GPA_m);
 			DPRINTF("\t -----> Deleted successfully\n");
 			DPRINTF("=====================================================\n");
-			for (;DMain_count<Count_Student;DMain_count++)
+			for (;DMain_count<fifo_buff->count;DMain_count++)
 			{
 				strcpy(DTemp->FirstName_m,NextTemp->FirstName_m);
 				strcpy(DTemp->LastName_m,NextTemp->LastName_m);
@@ -475,7 +467,7 @@ void Delete_by_roll(FIFO_BUFF_t *fifo_buff)
 				NextTemp++;
 			}
 			fifo_buff->count--;
-			Count_Student--;
+			fifo_buff->head--;
 			break;
 		}
 		DTemp++;
