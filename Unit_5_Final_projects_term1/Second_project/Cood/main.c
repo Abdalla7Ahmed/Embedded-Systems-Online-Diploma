@@ -36,10 +36,10 @@ void main ()
 		switch(atoi(text_temp))
 		{
 		case 1:
-			Add_student_from_file();
+			Add_student_from_file(&Data_base);
 			break;
 		case 2:
-			Add_student_manually();
+			Add_student_manually(&Data_base);
 			break;
 		case 3:
 			Find_by_roll(&Data_base);

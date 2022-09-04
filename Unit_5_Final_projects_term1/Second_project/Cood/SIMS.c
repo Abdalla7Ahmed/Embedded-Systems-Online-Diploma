@@ -8,10 +8,8 @@
 
 /********************** Variables **********************/
 static uint32_t Count_Student=0;
-//uint32_t counter;
 uint8_t Full_Name[20];
 uint32_t Selected_roll_number;
-//uint32_t i;
 uint32_t temp;
 
 /********************** Variables information of students **********************/
@@ -22,7 +20,7 @@ uint32_t gRoll_number;
 float gGPA;
 uint32_t gID_Course;
 
-/*********************************** FIFO ***********************************/
+/*********************************** FIFO init***********************************/
 
 FIFO_STATUS_t fifo_init(FIFO_BUFF_t *fifo_buff ,Student_info_t *Students,uint32_t length)
 {
@@ -38,7 +36,9 @@ FIFO_STATUS_t fifo_init(FIFO_BUFF_t *fifo_buff ,Student_info_t *Students,uint32_
 	return FIFO_no_error;
 }
 
-FIFO_STATUS_t PUSH_item(FIFO_BUFF_t *fifo_buff ,Student_info_t Students)
+/*********************************** PUSH ***********************************/
+
+FIFO_STATUS_t PUSH_item(FIFO_BUFF_t *fifo_buff )
 {
 	if (fifo_null(fifo_buff)==FIFO_NULL)
 	{
@@ -48,7 +48,7 @@ FIFO_STATUS_t PUSH_item(FIFO_BUFF_t *fifo_buff ,Student_info_t Students)
 	{
 		return FIFO_full;
 	}
-	*(fifo_buff->head)=Students;
+
 	fifo_buff->count++;
 	if(fifo_buff->head==(fifo_buff->base+(fifo_buff->length*sizeof(Students))))
 	{
@@ -60,6 +60,9 @@ FIFO_STATUS_t PUSH_item(FIFO_BUFF_t *fifo_buff ,Student_info_t Students)
 	}
 	return FIFO_no_error;
 }
+
+/*********************************** Check for full  ***********************************/
+
 FIFO_STATUS_t fifo_full(FIFO_BUFF_t *fifo_buff )
 {
 	if (!fifo_buff->base||!fifo_buff->head||!fifo_buff->tail)
@@ -75,6 +78,9 @@ FIFO_STATUS_t fifo_full(FIFO_BUFF_t *fifo_buff )
 		return FIFO_no_error;
 	}
 }
+
+/*********************************** Check for empty  ***********************************/
+
 FIFO_STATUS_t fifo_empty(FIFO_BUFF_t *fifo_buff)
 {
 	if (fifo_buff->count==0)
@@ -87,6 +93,9 @@ FIFO_STATUS_t fifo_empty(FIFO_BUFF_t *fifo_buff)
 	}
 
 }
+
+/*********************************** Check for Null  ***********************************/
+
 FIFO_STATUS_t fifo_null(FIFO_BUFF_t *fifo_buff )
 {
 	if (!fifo_buff->base||!fifo_buff->head||!fifo_buff->tail)
@@ -102,7 +111,7 @@ FIFO_STATUS_t fifo_null(FIFO_BUFF_t *fifo_buff )
 
 /********************** Functions of students **********************/
 
-void Add_student_from_file()
+void Add_student_from_file(FIFO_BUFF_t *fifo_buff)
 {
 	uint8_t Lines[50];
 	uint32_t N_Lines=0,NParts=0;
@@ -127,7 +136,7 @@ void Add_student_from_file()
 			case 1:
 				if (Find_repeat_roll_number(&Data_base,atoi(GETDATA))==1)
 				{
-					Students[Count_Student].RollNumber_m=atoi(GETDATA);
+					fifo_buff->head->RollNumber_m=atoi(GETDATA);
 				}
 				else
 				{
@@ -138,71 +147,81 @@ void Add_student_from_file()
 				}
 				break;
 			case 2:
-				strcpy(Students[Count_Student].FirstName_m,GETDATA);
+				strcpy(fifo_buff->head->FirstName_m,GETDATA);
 				break;
 			case 3:
-				strcpy(Students[Count_Student].LastName_m,GETDATA);
+				strcpy(fifo_buff->head->LastName_m,GETDATA);
 				break;
 			case 4:
-				Students[Count_Student].GPA_m=atof(GETDATA);
+				fifo_buff->head->GPA_m=atof(GETDATA);
 				break;
 			case 5:
 				if (Check_course_id(atoi(GETDATA))==1)
 				{
-					Students[Count_Student].CID_m[0]=atoi(GETDATA);
+					fifo_buff->head->CID_m[0]=atoi(GETDATA);
 				}
 				else
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
-					DPRINTF("\t [INFO]      ---> The ID course not recorded \n");
+					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
+					// error 404 !!!!
+					fifo_buff->head->CID_m[0]=404;
 					Error_Count++;
 				}
 				break;
 			case 6:
 				if (Check_course_id(atoi(GETDATA))==1)
 				{
-					Students[Count_Student].CID_m[1]=atoi(GETDATA);
+					fifo_buff->head->CID_m[1]=atoi(GETDATA);
 				}
 				else
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
-					DPRINTF("\t [INFO]      ---> The ID course not recorded \n");
+					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
+					// error 404 !!!!
+					fifo_buff->head->CID_m[1]=404;
 					Error_Count++;
 				}
 				break;
 			case 7:
 				if (Check_course_id(atoi(GETDATA))==1)
 				{
-					Students[Count_Student].CID_m[2]=atoi(GETDATA);
+					fifo_buff->head->CID_m[2]=atoi(GETDATA);
 				}
 				else
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
-					DPRINTF("\t [INFO]      ---> The ID course not recorded \n");
+					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
+					// error 404 !!!!
+					fifo_buff->head->CID_m[2]=404;
 					Error_Count++;
 				}
 				break;
 			case 8:
 				if (Check_course_id(atoi(GETDATA))==1)
 				{
-					Students[Count_Student].CID_m[3]=atoi(GETDATA);
+					fifo_buff->head->CID_m[3]=atoi(GETDATA);
 				}
 				else
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
-					DPRINTF("\t [INFO]      ---> The ID course not recorded \n");
+					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
+					// error 404 !!!!
+					fifo_buff->head->CID_m[3]=404;
 					Error_Count++;
 				}
 				break;
 			case 9:
 				if (Check_course_id(atoi(GETDATA))==1)
 				{
-					Students[Count_Student].CID_m[4]=atoi(GETDATA);
+					fifo_buff->head->CID_m[4]=atoi(GETDATA);
 				}
 				else
 				{
 					DPRINTF("\t [Warning] --> There is no course with id %d \n",atoi(GETDATA));
-					DPRINTF("\t [INFO]      ---> The ID course not recorded \n");
+					DPRINTF("\t [INFO]   ---> The ID course recorded as %d press 7 to update this\n",404);
+					// error 404 !!!!
+					fifo_buff->head->CID_m[4]=404;
 					Error_Count++;
 				}
 				break;
@@ -213,17 +232,19 @@ void Add_student_from_file()
 		{
 			continue;
 		}
-		if (PUSH_item(&Data_base,Students[Count_Student])==FIFO_no_error)
+		if (PUSH_item(&Data_base)==FIFO_no_error)
 		{
+			fifo_buff->head--;
 			DPRINTF("[INFO]---> The details of %s %s added successfully \n",
-					Students[Count_Student].FirstName_m,Students[Count_Student].LastName_m);
+					fifo_buff->head->FirstName_m,fifo_buff->head->LastName_m);
+			fifo_buff->head++;
 			Count_Student++;
 		}
-		else if (PUSH_item(&Data_base,Students[Count_Student])==FIFO_full)
+		else if (PUSH_item(&Data_base)==FIFO_full)
 		{
 			DPRINTF("[ERROR] --> You filled all the free space \n");
 		}
-		else if (PUSH_item(&Data_base,Students[Count_Student])==FIFO_NULL)
+		else if (PUSH_item(&Data_base)==FIFO_NULL)
 		{
 			DPRINTF("[ERROR] --> There is no FIFO initialization \n");
 		}
@@ -247,27 +268,29 @@ void Add_student_from_file()
 }
 /*********************************************************************************/
 
-void Add_student_manually()
+void Add_student_manually(FIFO_BUFF_t *fifo_buff)
 {
 	uint32_t AMain_count,ATemp_count;
+	uint32_t tempROLL;
 	DPRINTF("Enter the first name : ");
-	gets(Students[Count_Student].FirstName_m);
+	gets(fifo_buff->head->FirstName_m);
 	DPRINTF("Enter the last name : ");
-	gets(Students[Count_Student].LastName_m);
+	gets(fifo_buff->head->LastName_m);
 	DPRINTF("Enter the roll number : ");
-	scanf("%d",&Students[Count_Student].RollNumber_m);
-	if (Find_repeat_roll_number(&Data_base,Students[Count_Student].RollNumber_m)==0)
+	scanf("%d",&tempROLL);
+	if (Find_repeat_roll_number(&Data_base,tempROLL)==0)
 	{
 		DPRINTF("==================================================================\n");
-		DPRINTF("[ERROR] -> Roll number %d is already taken \n",Students[Count_Student].RollNumber_m);
+		DPRINTF("[ERROR] -> Roll number %d is already taken \n",tempROLL);
 		DPRINTF("[INFO]  --> Student record failed \n");
 		DPRINTF("==================================================================\n");
 
 	}
-	else if(Find_repeat_roll_number(&Data_base,Students[Count_Student].RollNumber_m)==1)
+	else if(Find_repeat_roll_number(&Data_base,tempROLL)==1)
 	{
+		fifo_buff->head->RollNumber_m=tempROLL;
 		DPRINTF("Enter the GPA : ");
-		scanf("%f",&Students[Count_Student].GPA_m);
+		scanf("%f",&fifo_buff->head->GPA_m);
 		DPRINTF("Enter the course ID for each course : \n");
 		for (AMain_count=0;AMain_count<Curse_number_for_each_student;AMain_count++)
 		{
@@ -275,7 +298,7 @@ void Add_student_manually()
 			scanf("%d",&temp);
 			if (Check_course_id(temp)==1)
 			{
-				Students[Count_Student].CID_m[AMain_count]=temp;
+				fifo_buff->head->CID_m[AMain_count]=temp;
 			}
 			else if (Check_course_id(temp)==0)
 			{
@@ -284,7 +307,7 @@ void Add_student_manually()
 			}
 
 		}
-		if (PUSH_item(&Data_base,Students[Count_Student])==FIFO_no_error)
+		if (PUSH_item(&Data_base)==FIFO_no_error)
 		{
 			Count_Student++;
 			DPRINTF("==================================================================\n");
@@ -293,11 +316,11 @@ void Add_student_manually()
 			DPRINTF("==================================================================\n");
 
 		}
-		else if (PUSH_item(&Data_base,Students[Count_Student])==FIFO_full)
+		else if (PUSH_item(&Data_base)==FIFO_full)
 		{
 			DPRINTF("[ERROR] --> You filled all the free space \n");
 		}
-		else if (PUSH_item(&Data_base,Students[Count_Student])==FIFO_NULL)
+		else if (PUSH_item(&Data_base)==FIFO_NULL)
 		{
 			DPRINTF("[ERROR] --> There is no FIFO initialization \n");
 		}
@@ -409,6 +432,7 @@ void Find_by_cource_ID(FIFO_BUFF_t *fifo_buff)
 	if (IDMiain_count>fifo_buff->count)
 	{
 		DPRINTF("[ERROR] --> There is no course with ID number %d\n",ID_number);
+		DPRINTF("==================================================================\n");
 	}
 	else
 	{
@@ -704,10 +728,11 @@ void Show_all_information(FIFO_BUFF_t *fifo_buff )
 			{
 				DPRINTF("The course ID is   --> %d \n",STemp->CID_m[STemp_count]);
 			}
-			DPRINTF("###################################################### \n");
+			DPRINTF("############################################################# \n");
 			STemp++;
 		}
-		printf("========= print elements is finished ========= \n\n");
+		printf("========= print elements is finished ========= \n");
+		DPRINTF("############################################################# \n");
 	}
 }
 

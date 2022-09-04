@@ -11,17 +11,30 @@
 #include "stdint.h"
 #include "string.h"
 #include "stdlib.h"
-/**************************************************************/
-#define Total_number_courses_id 10
-#define Curse_number_for_each_student 5
-#define Student_number 50
 
+/**************************************************************/
+//#define debug
+//#ifdef debug
+//uint32_t debug_enable = 1;
+//#else
+//uint32_t debug_enable = 0;
+//#endif
+//
+//#define DPRINTF(debug_level,...) if (1){\
+//		if (debug_level>1) printf("@func : %s , File : %s , Line : %d ",__func__,__FILE__,__LINE__);\
+//		printf(">> \t ");\
+//		printf("__VA_ARGS__");}
+
+/**************************************************************/
 #define DPRINTF(...)   {fflush(stdout);\
 		fflush(stdin);\
 		printf(__VA_ARGS__);\
 		fflush(stdout);\
 		fflush(stdin);}
-
+/**************************************************************/
+#define Total_number_courses_id 10
+#define Curse_number_for_each_student 5
+#define Student_number 50
 
 /**************************************************************/
 typedef struct
@@ -58,15 +71,15 @@ Student_info_t Students[Student_number];
 
 /********************** APIS **********************/
 FIFO_STATUS_t fifo_init(FIFO_BUFF_t *fifo_buff ,Student_info_t *Students,uint32_t length);
-FIFO_STATUS_t PUSH_item(FIFO_BUFF_t *fifo_buff ,Student_info_t Students);
+FIFO_STATUS_t PUSH_item(FIFO_BUFF_t *fifo_buff );
 FIFO_STATUS_t POP_item(FIFO_BUFF_t *fifo_buff ,uint32_t *item);
 FIFO_STATUS_t fifo_full(FIFO_BUFF_t *fifo_buff );
 FIFO_STATUS_t fifo_empty(FIFO_BUFF_t *fifo_buff );
 FIFO_STATUS_t fifo_null(FIFO_BUFF_t *fifo_buff );
 
 /**********************  ###################  **********************/
-void Add_student_from_file();
-void Add_student_manually();
+void Add_student_from_file(FIFO_BUFF_t *fifo_buff);
+void Add_student_manually(FIFO_BUFF_t *fifo_buff);
 void Find_by_roll(FIFO_BUFF_t *fifo_buff);
 void Fine_by_FistName(FIFO_BUFF_t *fifo_buff);
 void Find_by_cource_ID(FIFO_BUFF_t *fifo_buff);
