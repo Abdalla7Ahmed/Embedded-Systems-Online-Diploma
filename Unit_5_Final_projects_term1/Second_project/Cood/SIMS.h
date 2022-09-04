@@ -20,7 +20,7 @@
 //uint32_t debug_enable = 0;
 //#endif
 //
-//#define DPRINTF(debug_level,...) if (1){\
+//#define DPRINTF(debug_level,...) if (debug_enable){\
 //		if (debug_level>1) printf("@func : %s , File : %s , Line : %d ",__func__,__FILE__,__LINE__);\
 //		printf(">> \t ");\
 //		printf("__VA_ARGS__");}
