@@ -73,8 +73,7 @@ int main(void)
 	PGICR->PIN.Pin7=1;
 	
 	// Enable Global interrupt
-	sei();
-	//PSREG->PIN.Pin7=1; 
+	SREG->PIN.Pin7=1; 
 	// we can also enable global interrupt by using function sei();
 	// sei(); --> to set 
 	// cli(); --> to clear 
