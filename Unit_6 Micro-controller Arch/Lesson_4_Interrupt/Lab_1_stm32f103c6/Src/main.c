@@ -66,7 +66,7 @@ typedef union {
 
 }STM32F103C6_t;
 
-volatile STM32F103C6_t *GPIOx_CRL   =(volatile STM32F103C6_t *)(GPIOA_BASE+0x00);
+volatile STM32F103C6_t *GPIOA_CRL   =(volatile STM32F103C6_t *)(GPIOA_BASE+0x00);
 volatile STM32F103C6_t *RCC_APB2ENR =(volatile STM32F103C6_t *)(RCC_BASE+0x18  );
 volatile STM32F103C6_t *GPIOA_ODR   =(volatile STM32F103C6_t *)(GPIOA_BASE+0x0c);
 volatile STM32F103C6_t *GPIOA_CRH   =(volatile STM32F103C6_t *)(GPIOA_BASE+0x04);
@@ -90,8 +90,8 @@ void GPIO_pin0_input_init()
 {
 	// pin 0 PORT A as an input
 	//01: Floating input (reset state)
-	GPIOx_CRL->PIN.Pin2=1;
-	GPIOx_CRL->PIN.Pin3=0;
+	GPIOA_CRL->PIN.Pin2=1;
+	GPIOA_CRL->PIN.Pin3=0;
 
 }
 void GPIO_pin13_output_init()
