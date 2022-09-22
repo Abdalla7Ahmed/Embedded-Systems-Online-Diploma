@@ -6,18 +6,11 @@
  */
 #include "SIMS.h"
 
-/********************** Variables **********************/
-uint8_t Full_Name[20];
+/********************** global Variables **********************/
 uint32_t Selected_roll_number;
 uint32_t temp;
 
 /********************** Variables information of students **********************/
-uint8_t gFirst_Name[20];
-uint8_t gLast_Name[20];
-uint8_t gFull_Name[40];
-uint32_t gRoll_number;
-float gGPA;
-uint32_t gID_Course;
 
 /*********************************** FIFO init***********************************/
 
@@ -723,7 +716,7 @@ void Show_all_information(FIFO_BUFF_t *fifo_buff )
 			DPRINTF("############################################################# \n");
 			STemp++;
 		}
-		printf("========= print elements is finished ========= \n");
+		printf("========= printing all students finished ========= \n");
 		DPRINTF("############################################################# \n");
 	}
 }

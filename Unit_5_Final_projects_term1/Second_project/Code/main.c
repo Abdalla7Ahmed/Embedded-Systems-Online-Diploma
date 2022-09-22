@@ -9,13 +9,13 @@
 #include "SIMS.h"
 
 
-void main ()
+int main ()
 {
-	fifo_init(&Data_base,&Students,Student_number);
+	fifo_init(&Data_base,Students,Students_number);
 	DPRINTF("==============================================================\n");
 	DPRINTF("========== Welcome to the student management system ==========\n");
 	DPRINTF("==============================================================\n");
-	uint8_t text_temp[40];
+	uint32_t temp;
 	while(1)
 	{
 
@@ -31,9 +31,9 @@ void main ()
 		DPRINTF("\n 9: Show all information of students");
 		DPRINTF("\n 10: To exit");
 		DPRINTF("\n\t Enter option number\n");
-		gets(text_temp);
+		scanf("%d",&temp);
 		DPRINTF("==============================================================\n");
-		switch(atoi(text_temp))
+		switch(temp)
 		{
 		case 1:
 			Add_student_from_file(&Data_base);
@@ -69,6 +69,7 @@ void main ()
 			break;
 		}
 	}
+	return 0;
 }
 
 

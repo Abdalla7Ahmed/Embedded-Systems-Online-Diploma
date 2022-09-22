@@ -12,18 +12,6 @@
 #include "string.h"
 #include "stdlib.h"
 
-/**************************************************************/
-//#define debug
-//#ifdef debug
-//uint32_t debug_enable = 1;
-//#else
-//uint32_t debug_enable = 0;
-//#endif
-//
-//#define DPRINTF(debug_level,...) if (debug_enable){\
-//		if (debug_level>1) printf("@func : %s , File : %s , Line : %d ",__func__,__FILE__,__LINE__);\
-//		printf(">> \t ");\
-//		printf("__VA_ARGS__");}
 
 /**************************************************************/
 #define DPRINTF(...)   {fflush(stdout);\
@@ -34,7 +22,7 @@
 /**************************************************************/
 #define Total_number_courses_id 10
 #define Curse_number_for_each_student 5
-#define Student_number 50
+#define Students_number 50
 
 /**************************************************************/
 typedef struct
@@ -67,7 +55,7 @@ typedef enum
 
 /**************************************************************/
 FIFO_BUFF_t Data_base;
-Student_info_t Students[Student_number];
+Student_info_t Students[Students_number];
 
 /********************** APIS **********************/
 FIFO_STATUS_t fifo_init(FIFO_BUFF_t *fifo_buff ,Student_info_t *Students,uint32_t length);
