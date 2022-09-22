@@ -1,0 +1,8 @@
+"HAL/Kaypad.o"
+"HAL/Seven_segment.o"
+"HAL/lcd.o"
+"STM32F103C6_Driver/STM32F103C6_Driver.o"
+"Src/main.o"
+"Src/syscalls.o"
+"Src/sysmem.o"
+"Startup/startup_stm32f103c6tx.o"
