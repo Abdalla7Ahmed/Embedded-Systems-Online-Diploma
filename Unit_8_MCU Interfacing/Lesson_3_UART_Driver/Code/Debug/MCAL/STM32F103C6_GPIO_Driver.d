@@ -1,7 +1,0 @@
-MCAL/STM32F103C6_GPIO_Driver.o: ../MCAL/STM32F103C6_GPIO_Driver.c \
- ../MCAL/../MCAL/Inc/STM32F103C6_GPIO_Driver.h \
- ../MCAL/../MCAL/Inc/../../MCAL/Inc/STM32F103C6.h
-
-../MCAL/../MCAL/Inc/STM32F103C6_GPIO_Driver.h:
-
-../MCAL/../MCAL/Inc/../../MCAL/Inc/STM32F103C6.h:
