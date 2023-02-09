@@ -48,14 +48,3 @@ void Watchdog_Disable(void)
 
 }
 
-
-// void WDT_ON()
-// {
-// 	WDTCR = (1 << WDP0) | (1 << WDP1) | (1 << WDP2) | (1 << WDE);
-// }
-
-//void WDT_OFF()
-// {
-// 	WDTCR = (1<<WDTOE)|(1<<WDE);
-//	WDTCR = 0x00;
-//}
