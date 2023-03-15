@@ -1,0 +1,15 @@
+;|============	Lab 2 ============ |
+		
+RESET     ;CPU entry point
+		MOV		R0 ,#5
+		bl		main
+		
+main
+		MOV		R1 , #0x100
+		STR		R0 , [R1]
+		LDR		R3 , [R1]
+		STRB		R0,[R1,#0x1]
+		STRB		R0,[R1,#0x2]
+		STRB		R0,[R1,#0x3]
+		
+	
