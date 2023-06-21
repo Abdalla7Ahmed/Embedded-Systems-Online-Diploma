@@ -14,14 +14,14 @@
 #include "STM32F103C6_Driver.h"
 
 /*=========================== User Layer ===================================*/
-#define LCD_PORT GPIOA
-#define LCD_CTRL GPIOA
-#define RS_SWITCH GPIO_PIN_10
-#define RW_SWITCH GPIO_PIN_9
-#define EN_SWITCH GPIO_PIN_8
+#define LCD_PORT 	GPIOA
+#define LCD_CTRL 	GPIOA
+#define RS_SWITCH 	GPIO_PIN_10
+#define RW_SWITCH 	GPIO_PIN_9
+#define EN_SWITCH 	GPIO_PIN_8
 
-#define EIGHT_BIT_MODE
-//#define FOUR_BIT_MODE
+//#define EIGHT_BIT_MODE
+#define FOUR_BIT_MODE
 /*==================================================================================*/
 
 
