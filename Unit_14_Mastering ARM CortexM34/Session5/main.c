@@ -18,12 +18,6 @@
 #include "Seven_Segment.h"
 
 
-
-typedef enum
-{
-	Privileged,
-	UnPrivileged
-}Access_Level;
 uint8_t IRQ_Flag =0,TaskA_Flag,TaskB_Flag;
 
 EXTRI_PinConfig_t PinConfig;
@@ -39,8 +33,8 @@ EXTRI_PinConfig_t PinConfig;
 
 #define OS_Generate_Exception     			__asm volatile("SVC #0x3")
 
-#define Switch_To_Privileged_Access_Level	__asm("MRS R3,CONTROL \n\t LSR R3,R3,#0x1 \n\t LSL R3,R3,#0x1 \n\t MSR CONTROL,R3");
-#define Switch_To_UnPrivileged_Access_Level	__asm("MRS R3,CONTROL \n\t ORR R3,R3,#0x1 \n\t  MSR CONTROL,R3");
+#define Switch_To_Privileged_Access_Level	__asm volatile("MRS R3,CONTROL \n\t LSR R3,R3,#0x1 \n\t LSL R3,R3,#0x1 \n\t MSR CONTROL,R3");
+#define Switch_To_UnPrivileged_Access_Level	__asm volatile("MRS R3,CONTROL \n\t ORR R3,R3,#0x1 \n\t  MSR CONTROL,R3");
 
 
 extern int _estack ;
@@ -58,7 +52,6 @@ unsigned int _E_PSP_TA;
 unsigned int _S_PSP_TB;
 unsigned int _E_PSP_TB;
 
-void Switch_Privileged_UnPrivileged(Access_Level Level);
 void clock_init();
 void EXTRIB09_CallBack(void);
 void EXTRI_Configuration(void);
@@ -87,11 +80,6 @@ int main(void)
 
 
 
-
-
-
-
-
 void EXTRI_Configuration(void)
 {
 
@@ -102,26 +90,6 @@ void EXTRI_Configuration(void)
 	MCAL_EXTRI_GPIO_INIT(&PinConfig);
 
 }
-
-void Switch_CPU_Access_Level(Access_Level Level)
-{
-	switch(Level)
-	{
-	case Privileged:
-		__asm("mrs r3,CONTROL \n\t"
-				"lsr r3,r3,#0x1 \n\t"
-				"lsl r3,r3,#0x1 \n\t"
-				"msr CONTROL,r3");
-		break;
-	case UnPrivileged :
-		__asm("mrs r3,CONTROL \n\t"
-				"orr r3,r3,#0x1 \n\t"
-				"msr CONTROL,r3");
-		break;
-
-	}
-}
-
 void clock_init()
 {
 	// Enable clock GPIOA
@@ -166,11 +134,11 @@ void MainOS()
 	// Main Stack
 	_E_MSP = (_S_MSP - 512);
 
-	// Task A Process stack
+	// Task A Stack
 	_S_PSP_TA = (_E_MSP - 8);
 	_E_PSP_TA = (_S_PSP_TA - TaskA_Stack_Size);
 
-	// Task B Process stack
+	// Task B Stack
 	_S_PSP_TB = (_E_PSP_TA - 8);
 	_E_PSP_TB = (_S_PSP_TB - TaskB_Stack_Size);
 
