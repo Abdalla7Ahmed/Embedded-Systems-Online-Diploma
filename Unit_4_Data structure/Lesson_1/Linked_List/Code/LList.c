@@ -162,24 +162,7 @@ int Index_of_student()
 	}
 
 }
-/******************* Recursion ********************/
-//int Length_of_list()
-//{
-//	uint32_t counter=0;
-//	struct SStudent *PCurrentStudent=gPFirstStudent;
-//	if (!gPFirstStudent)
-//	{
-//		return 0;
-//	}
-//	else
-//	{
-//		PCurrentStudent=PCurrentStudent->PNextStudent;
-//		return 1+Length_of_list();
-//
-//	}
-//	DPRINTF("You record until now %d student(s)\n",counter);
-//	return 1;
-//}
+
 
 int Length_of_list()
 {
